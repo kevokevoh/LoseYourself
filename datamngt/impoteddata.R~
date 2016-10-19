@@ -1,0 +1,16 @@
+datax<-read.csv("data/nels.csv",sep=",",header=TRUE)
+head(datax)
+tail(datax)
+gender<-c(rep("M",15),rep("F",14))
+location<-c(rep("nairobi",10),rep("kisumu",19))
+datax<-cbind(datax,gender,location)
+str(datax) #types of variables forming columns of the data
+dim(datax) #number of rows and columns
+View(datax)#view data as a spreadsheet
+colnames(datax)<-c("age","height","weight","income","gender","location") #attach new title
+View(datax)
+write.table(datax,file="data/dataxx.csv",sep=",") #write datax
+dataxx<-read.csv("dataxx.csv",sep=",",header=TRUE)
+attach(dataxx)
+mean(age)
+tapply(age,location,mean) # checks the mean age in the specific location

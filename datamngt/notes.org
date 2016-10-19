@@ -1,0 +1,25 @@
+*** R commands
+
+print(B<-c(min(weight),max(weight));B)
+get working directory for R getwd()
+To set the root wotking directoru setwd("The path or url")
+Read data from a csv file 'ds = read.csv("weight.csv",sep=",", header=TRUE)'
+can read the data in a csv format can use View(ds)
+To get variable names use names(ds)
+To get function use mean(ds$Height)
+Attach data to working space 
+Attach the data to the working space ie attach(data1)
+The can run functions directy ie mean(Height)
+Get random numbers(15) from the uniform distribution is runif(number,min,max)
+ie runif(15,14,55)
+Can round of numbers to 0 decimal places ie round(Age,0)
+To bind a new coulmn data to an existing data set 
+ie data2<-cbind(ds,Age)
+Where age is the new column that has been added
+Export data
+use write.table(data2,file="data2.csv",append="FALSE",sep=",")
+
+*** The class checkouts
+Always add an id column that contains the count of the columns so that you can use it
+during analysis to get back to the origin dataset(Always include id)
+Check on package called PLYR
