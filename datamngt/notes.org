@@ -23,3 +23,8 @@ use write.table(data2,file="data2.csv",append="FALSE",sep=",")
 Always add an id column that contains the count of the columns so that you can use it
 during analysis to get back to the origin dataset(Always include id)
 Check on package called PLYR
+
+*** Regression
+Simple linear regression 
+Consider datarepresented by variables X and Y such that
+help.start() #fire up html help

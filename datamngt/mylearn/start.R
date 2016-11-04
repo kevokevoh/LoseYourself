@@ -8,7 +8,7 @@ require("package_name") or library(package_name)
 library(gdata)
 perl<-"path to perl use which(perl)"
 ds = read.xls("http://www.amherst.edu/~nhorton/r2/datasets/help.xlsx",
-sheet=1, perl=perl)
+sheet=1)
 #push data from R to SAS
 tosas = data.frame(ds)
 library(foreign)

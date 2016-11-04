@@ -1,0 +1,15 @@
+library(plyr)
+install.packages("plyr")
+library(plyr)
+x<-c(1,2,3,4,5,6,7,8,9,10)
+x = 1:10;x
+y = sample(c("m","f"),10, replace= TRUE);y
+z= rnorm(10)
+z
+
+d<-data.frame(x,y,z)
+d
+str(d)
+colnames(d)<-c("id","gender","height")
+d
+
