@@ -4,6 +4,8 @@ install.packages("master.tar.gz", type = "source", repos = NULL)
 #else
 install.packages("package_name")
 require("package_name") or library(package_name)
+#detach a package
+detach("package:package_name", unload=TRUE)
 #Read excel files in R
 library(gdata)
 perl<-"path to perl use which(perl)"
