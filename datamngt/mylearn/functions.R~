@@ -1,0 +1,7 @@
+x = numeric(10)
+# create placeholder
+for (i in 1:length(x)) {
+x[i] = rnorm(1) # this is slow and inefficient!Sample for loop use x = rnorm(10) instead
+}
+
+ifelse(expression, x, y)#vector ifelse
