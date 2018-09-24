@@ -1,0 +1,96 @@
+# load fatal data
+fatal2015 <- read.csv(file='data/2015.csv', sep=',', header=TRUE)
+fatal2016 <- read.csv(file='data/2016.csv', sep=',', header=TRUE)
+fatal2017 <- read.csv(file='data/2017.csv', sep=',', header=TRUE)
+fatal2018 <- read.csv(file='data/2018.csv', sep=',', header=TRUE)
+# Format 2015 dates(One off!)
+## dates <- as.Date(as.character(fatal2015$DATE), "%d/%m/%Y")
+## fatal2015$DATE <- format(dates, format = "%m/%d/%Y")
+## write.csv(fatal2015, file="data/new2015.csv")
+fatal2015 <- fatal2015[!(fatal2015$VICTIM==""|is.na(fatal2015$VICTIM)),]
+fatal2015[(fatal2015$VICTIM=="DRV "),]$VICTIM= "DRV"
+fatal2016[(fatal2016$VICTIM=="PIL "),]$VICTIM= "PIL"
+fatal2017[(fatal2017$VICTIM=="PIL  "),]$VICTIM= "PIL"
+fatal2017[(fatal2017$VICTIM=="PL"),]$VICTIM= "PIL"
+fatal2017[(fatal2017$VICTIM=="M/CY"),]$VICTIM= "MCY"
+fatal2018 <- fatal2018[0:1420,]
+fatal2018[(fatal2018$VICTIM=="PASS"),]$VICTIM= "PAS"
+fatal2018[(fatal2018$VICTIM=="DR"),]$VICTIM= "DRV"
+fatal2018[(fatal2018$VICTIM==" PAS"),]$VICTIM= "PAS"
+fatal2015 <- droplevels(fatal2015)
+fatal2016 <- droplevels(fatal2016)
+fatal2017 <- droplevels(fatal2017)
+fatal2018 <- droplevels(fatal2018)
+fatalities <- rbind(fatal2015, fatal2016, fatal2017, fatal2018)
+fatalities <- fatalities[order(as.Date(fatalities$DATE, format="%m/%d/%Y")),]
+motorcylcefatalities <- fatalities[fatalities$VICTIM=="MCY" | fatalities$VICTIM=="PIL",]
+names(motorcylcefatalities)[14] <- "FATALITIES"
+rownames(motorcylcefatalities) <- seq(length=nrow(motorcylcefatalities))
+
+motorcylcefatalities[(motorcylcefatalities$DAY=="sunday"),]$DAY= "Sunday"
+motorcylcefatalities[(motorcylcefatalities$DAY=="FRIDAY"),]$DAY= "Friday"
+motorcylcefatalities[(motorcylcefatalities$DAY=="MONDAY"),]$DAY= "Monday"
+motorcylcefatalities[(motorcylcefatalities$DAY=="SATURDAY"),]$DAY= "Saturday"
+motorcylcefatalities[(motorcylcefatalities$DAY=="SUNDAY"),]$DAY= "Sunday"
+motorcylcefatalities[(motorcylcefatalities$DAY=="THURSDAY"),]$DAY= "Thursday"
+motorcylcefatalities[(motorcylcefatalities$DAY=="TUESDAY"),]$DAY= "Tuesday"
+motorcylcefatalities[(motorcylcefatalities$DAY=="WEDNESDAY"),]$DAY= "Wednesday"
+
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="BNGOMA"),]$COUNTY = "BUNGOMA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="WEBUYE"),]$COUNTY = "BUNGOMA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="ELGEIYO-MARAKWET"),]$COUNTY = "ELGEYO MARAKWET"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="HOMABAY"),]$COUNTY = "HOMA BAY"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="KAKAMEGA "),]$COUNTY = "KAKAMEGA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="MACHAKOS "),]$COUNTY = "MACHAKOS"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="MURANG'A"),]$COUNTY = "MURANGA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="MURANGA "),]$COUNTY = "MURANGA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="TAITA TAVETA"),]$COUNTY = "TAITA-TAVETA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="TAITA-TAVETA "),]$COUNTY = "TAITA-TAVETA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="TRANS NZOIA "),]$COUNTY = "TRANS NZOIA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="TRANS ZOIA "),]$COUNTY = "TRANS NZOIA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="TRANZOIA"),]$COUNTY = "TRANS NZOIA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="TRAN NZOIA"),]$COUNTY = "TRANS NZOIA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="TRANS- NZOIA"),]$COUNTY = "TRANS NZOIA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="UASIN NGISHU"),]$COUNTY = "UASIN GISHU"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="UASIN GISHU "),]$COUNTY = "UASIN GISHU"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="UASIN GISHU"),]$COUNTY = "UASIN GISHU"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="ELDORET"),]$COUNTY = "UASIN GISHU"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="UASINGISHU"),]$COUNTY = "UASIN GISHU"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="BUSAI"),]$COUNTY = "BUSIA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="KAKAMEA"),]$COUNTY = "KAKAMEGA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY==" KAKAMEGA"),]$COUNTY = " KAKAMEGA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="BUTERE "),]$COUNTY = "KAKAMEGA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="NAIROBI COUNTY"),]$COUNTY = "NAIROBI"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="KAYOLE"),]$COUNTY = "NAIROBI"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="NAIROBI "),]$COUNTY = "NAIROBI"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="NAKURU "),]$COUNTY = "NAKURU"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="NYANDARAU"),]$COUNTY = "NYANDARUA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="NYANDARUA "),]$COUNTY = "NYANDARUA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="KIAMBU "),]$COUNTY = "KIAMBU"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="KILFI "),]$COUNTY = "KILIFI"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="KILFI"),]$COUNTY = "KILIFI"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="KILIFI "),]$COUNTY = "KILIFI"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="KIRINYAGA "),]$COUNTY = "KIRINYANGA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="KIRINYAGA"),]$COUNTY = "KIRINYANGA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="KISUMU "),]$COUNTY = "KISUMU"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="KWALE "),]$COUNTY = "KWALE"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="MAKINDU"),]$COUNTY = "MAKUENI"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="MAKUENI "),]$COUNTY = "MAKUENI"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="MERU "),]$COUNTY = "MERU"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="MIGORI "),]$COUNTY = "MIGORI"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="MOMBASA "),]$COUNTY = "MOMBASA"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="WEST-POKOT "),]$COUNTY = "WEST-POKOT"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="WEST POKOT"),]$COUNTY = "WEST-POKOT"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="KITU"),]$COUNTY = "KITUI"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="MWINGI"),]$COUNTY = "KITUI"
+motorcylcefatalities[(motorcylcefatalities$COUNTY=="SOTIK"),]$COUNTY = "BOMET"
+
+motorcylcefatalities <- droplevels(motorcylcefatalities)
+
+pkgTest("lubridate")
+require("lubridate")
+motorcylcefatalities$YEAR.QUARTER <- with(motorcylcefatalities, quarter(mdy(motorcylcefatalities$DATE), with_year = TRUE))
+
+cleanedMotorCYcleData <- motorcylcefatalities[,c(2,5,13,14,15)]
+write.csv(cleanedMotorCYcleData, file="data/cleanMotorCycleData.csv", row.names = FALSE)
+
